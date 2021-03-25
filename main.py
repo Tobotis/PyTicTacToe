@@ -52,6 +52,8 @@ def main():
                 if 0 <= c < BOARD_SIZE and 0 <= r < BOARD_SIZE:
                     if board.state[r][c] == 0:
                         board.make_move((r, c))
+            if board.game_over or board.draw:
+                print("Game Over")
         display_board(board, screen)
         p.display.flip()
         clock.tick(MAX_FPS)

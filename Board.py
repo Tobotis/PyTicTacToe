@@ -17,3 +17,23 @@ class Board:
             else:
                 self.state[move[0]][move[1]] = 0
         self.x_turn = not self.x_turn
+        self.check_result()
+
+    def check_result(self):
+        if self.state[0][0] == self.state[0][1] == self.state[0][2] or self.state[0][0] == self.state[1][1] == \
+                self.state[2][2] or self.state[0][2] == self.state[1][1] == self.state[2][0] or self.state[1][0] == \
+                self.state[1][1] == self.state[1][2] or self.state[2][0] == self.state[2][1] == self.state[2][2] or \
+                self.state[0][0] == self.state[1][0] == self.state[2][0] or self.state[0][1] == self.state[1][1] == \
+                self.state[2][1] or self.state[0][2] == self.state[1][2] == self.state[2][2]:
+            self.game_over = True
+        else:
+            empty_square = False
+            for i in range(len(self.state)):
+                for j in range(len(self.state[i])):
+                    if self.state[i][j] == 0:
+                        empty_square = True
+            if empty_square:
+                self.game_over = False
+                self.draw = False
+            else:
+                self.draw = True
