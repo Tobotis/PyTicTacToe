@@ -38,22 +38,24 @@ def main():
     load_images()
 
     playing = True
-
+    player1 = True
+    player2 = True
     moved = False
 
     while playing:
         for event in p.event.get():
             if event.type == p.QUIT:
                 playing = False
-            if event.type == p.MOUSEBUTTONDOWN:
-                position = p.mouse.get_pos()
-                c = position[0] // SQUARE_SIZE
-                r = position[1] // SQUARE_SIZE
-                if 0 <= c < BOARD_SIZE and 0 <= r < BOARD_SIZE:
-                    if board.state[r][c] == 0:
-                        board.make_move((r, c))
-            if board.game_over or board.draw:
-                print("Game Over")
+            if not board.game_over and ((player1 and board.x_turn) or (player2 and not board.x_turn)):
+                if event.type == p.MOUSEBUTTONDOWN:
+                    position = p.mouse.get_pos()
+                    c = position[0] // SQUARE_SIZE
+                    r = position[1] // SQUARE_SIZE
+                    if 0 <= c < BOARD_SIZE and 0 <= r < BOARD_SIZE:
+                        if board.state[r][c] == 0:
+                            board.make_move((r, c))
+        if board.game_over or board.draw:
+            print("Game Over")
         display_board(board, screen)
         p.display.flip()
         clock.tick(MAX_FPS)

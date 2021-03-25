@@ -20,11 +20,13 @@ class Board:
         self.check_result()
 
     def check_result(self):
-        if self.state[0][0] == self.state[0][1] == self.state[0][2] or self.state[0][0] == self.state[1][1] == \
-                self.state[2][2] or self.state[0][2] == self.state[1][1] == self.state[2][0] or self.state[1][0] == \
-                self.state[1][1] == self.state[1][2] or self.state[2][0] == self.state[2][1] == self.state[2][2] or \
-                self.state[0][0] == self.state[1][0] == self.state[2][0] or self.state[0][1] == self.state[1][1] == \
-                self.state[2][1] or self.state[0][2] == self.state[1][2] == self.state[2][2]:
+        if self.state[0][0] == self.state[0][1] == self.state[0][2] != 0 or self.state[0][0] == self.state[1][1] == \
+                self.state[2][2] != 0 or self.state[0][2] == self.state[1][1] == self.state[2][0] != 0 or self.state[1][
+            0] == \
+                self.state[1][1] == self.state[1][2] != 0 or self.state[2][0] == self.state[2][1] == self.state[2][
+            2] != 0 or \
+                self.state[0][0] == self.state[1][0] == self.state[2][0] != 0 or self.state[0][1] == self.state[1][1] == \
+                self.state[2][1] != 0 or self.state[0][2] == self.state[1][2] == self.state[2][2] != 0:
             self.game_over = True
         else:
             empty_square = False
