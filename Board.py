@@ -1,6 +1,8 @@
 class Board:
     def __init__(self):
-        self.state = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+        self.state = [[0, 0, 0],
+                      [0, 0, 0],
+                      [0, 0, 0]]
         self.x_turn = True
         self.draw = False
         self.game_over = False
@@ -39,3 +41,11 @@ class Board:
                 self.draw = False
             else:
                 self.draw = True
+
+    def get_moves(self):
+        moves = []
+        for i in range(len(self.state)):
+            for j in range(len(self.state[i])):
+                if self.state[i][j] == 0:
+                    moves.append((i, j))
+        return moves

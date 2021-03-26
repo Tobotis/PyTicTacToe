@@ -1,5 +1,5 @@
 import pygame as p
-import math
+import Ai
 from Board import Board
 
 HEIGHT = WIDTH = 500
@@ -39,7 +39,7 @@ def main():
 
     playing = True
     player1 = True
-    player2 = True
+    player2 = False
     moved = False
 
     while playing:
@@ -51,14 +51,20 @@ def main():
                     position = p.mouse.get_pos()
                     c = position[0] // SQUARE_SIZE
                     r = position[1] // SQUARE_SIZE
-                    if 0 <= c < BOARD_SIZE and 0 <= r < BOARD_SIZE:
-                        if board.state[r][c] == 0:
+                    for move in board.get_moves():
+                        if move == (r, c):
                             board.make_move((r, c))
-        if board.game_over or board.draw:
-            print("Game Over")
+
         display_board(board, screen)
         p.display.flip()
         clock.tick(MAX_FPS)
+        if board.game_over or board.draw:
+            print("Game Over")
+        elif not(player1 and board.x_turn) and not (player2 and not board.x_turn):
+            move = Ai.find_best_move(board)
+            print(move)
+            if move is not None:
+                board.make_move(move)
 
 
 if __name__ == "__main__":
