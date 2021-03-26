@@ -38,8 +38,8 @@ def main():
     load_images()
 
     playing = True
-    player1 = True
-    player2 = False
+    player1 = False
+    player2 = True
     moved = False
 
     while playing:
@@ -58,11 +58,16 @@ def main():
         display_board(board, screen)
         p.display.flip()
         clock.tick(MAX_FPS)
-        if board.game_over or board.draw:
-            print("Game Over")
+        if board.game_over:
+            if board.x_turn:
+                print("O won")
+            else:
+                print("X won")
+        elif board.draw:
+            print("Draw")
+
         elif not(player1 and board.x_turn) and not (player2 and not board.x_turn):
             move = Ai.find_best_move(board)
-            print(move)
             if move is not None:
                 board.make_move(move)
 

@@ -53,7 +53,7 @@ def find_min_max_alpha_beta(moves, board, a,b, is_first=False):
             if b <= a:
                 break
         if is_first:
-            print(str(best_move) + " with score of " + max_eval)
+            print(str(best_move) + " with score of " + str(max_eval))
             return best_move
         return max_eval
     else:
@@ -70,6 +70,6 @@ def find_min_max_alpha_beta(moves, board, a,b, is_first=False):
             if b <= a:
                 break
         if is_first:
-            print(str(best_move) + " with score of " + min_eval)
+            print(str(best_move) + " with score of " + str(min_eval))
             return best_move
         return min_eval
