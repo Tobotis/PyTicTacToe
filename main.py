@@ -39,7 +39,7 @@ def main():
 
     playing = True
     player1 = False
-    player2 = True
+    player2 = False
     moved = False
 
     while playing:
